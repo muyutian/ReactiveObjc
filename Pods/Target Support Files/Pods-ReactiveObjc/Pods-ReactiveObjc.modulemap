@@ -1,0 +1,6 @@
+module Pods_ReactiveObjc {
+  umbrella header "Pods-ReactiveObjc-umbrella.h"
+
+  export *
+  module * { export * }
+}
