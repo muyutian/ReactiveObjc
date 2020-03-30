@@ -42,7 +42,6 @@
      RAC
      在事件发生时立即做出响应，这种逻辑需要用到KVO进行监听，然后重新计算，而RAC是不管中间过程而直接去响应事件。
      在处理Target-Action，Delegate，KVO，Notification等等时，把监听代码以及响应在吗放在一起，无需跳入对应方法，代码简洁利于管理。
-     
      */
     
     //实例
@@ -60,16 +59,25 @@
      3、发送信号
      */
     
+    /**
+     RACSignal 信号类
+     这个类只是表示数据变化时，信号内部会发出数据，它本身不具备发送信号的能力，而是通过subscriber（订阅者）发出。
+     默认一个信号都是冷信号，即使数据变化了也不会被触发，只有订阅了这个信号才会变成热信号，数据变化时才会触发。
+     */
     //创建信号
+    NSLog(@"初始化信号类");
     RACSignal *signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
         NSLog(@"创建信号");
         
-        //发送信号 subscriber订阅者
+        //发送信号 subscriber订阅者 通过保存的订阅者的Block进行回调
+        NSLog(@"发送信号");
         [subscriber sendNext:@"rac_signal"];
         
         //发送完成
+        NSLog(@"发送完成");
+
         [subscriber sendCompleted];
-        
+                
         //RACDisposable用于取消订阅以及清理资源，当信号发送完成或者发送错误时触发。
         return [RACDisposable disposableWithBlock:^{
            //取消订阅
@@ -77,10 +85,53 @@
         }];
     }];
     
-    //订阅信号，只有订阅之后才会激活信号
+    //订阅信号，只有订阅之后才会激活信号 信号类保存订阅者的Block
+    NSLog(@"订阅信号");
     [signal subscribeNext:^(id  _Nullable x) {
-        NSLog(@"订阅信号: %@",x);
+        NSLog(@"收到信号: %@",x);
     }];
+    
+    
+    /**
+     RACSubject 信号提供者
+     这个类可以充当信号，也可以发送信号，在这里要注意先订阅再发送信号。
+     */
+    //创建信号
+    RACSubject *subject = [RACSubject subject];
+    
+    //订阅
+    [subject subscribeNext:^(id  _Nullable x) {
+        NSLog(@"订阅者_1： %@",x);
+    }];
+    
+    [subject subscribeNext:^(id  _Nullable x) {
+        NSLog(@"订阅者_2： %@",x);
+    }];
+    
+    //自己发送信号
+    [subject sendNext:@"subject"];
+    
+    
+    /**
+     RACReplaySubject 信号重复提供者
+     这个类是RACSubject的子类，但和RACSubject不同的是，这里可以先发送信号再订阅信号。并且，不论是第几次订阅，都会将之前发送的信号全部接收一遍。
+     */
+    //创建信号
+    RACReplaySubject *replaySubject = [RACReplaySubject subject];
+    
+    //发送信号
+    [replaySubject sendNext:@"signal_1"];
+    [replaySubject sendNext:@"signal_2"];
+    
+    //订阅信号
+    [replaySubject subscribeNext:^(id  _Nullable x) {
+        NSLog(@"订阅者_3： %@",x);
+    }];
+    
+    [replaySubject subscribeNext:^(id  _Nullable x) {
+        NSLog(@"订阅者_4： %@",x);
+    }];
+    
 }
 
 
