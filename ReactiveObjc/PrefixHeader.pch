@@ -1,0 +1,25 @@
+//
+//  PrefixHeader.pch
+//  ReactiveObjc
+//
+//  Created by zhangzy on 2020/4/1.
+//  Copyright © 2020 张正宇. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#ifdef __OBJC__
+
+#import <ReactiveObjC/ReactiveObjC.h>
+
+#endif
+
+#endif /* PrefixHeader_pch */
+
+
+
+

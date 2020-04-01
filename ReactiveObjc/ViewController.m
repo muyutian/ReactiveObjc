@@ -8,8 +8,6 @@
 
 #import "ViewController.h"
 
-#import <ReactiveObjC/ReactiveObjC.h>
-
 @interface ViewController ()
 
 @end
@@ -131,6 +129,10 @@
     [replaySubject subscribeNext:^(id  _Nullable x) {
         NSLog(@"订阅者_4： %@",x);
     }];
+    
+    /**
+     那么对于RACSubject的实际应用，我们可以用来替换代理，应用实例请查看“RAC_Delegate”。
+     */
     
 }
 

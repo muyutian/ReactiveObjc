@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		114FBBC3FBFC956FB62B9075 /* libPods-ReactiveObjc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B4A1B65DD56D7C86F6427E7 /* libPods-ReactiveObjc.a */; };
+		2B6256EA2434767200B25F7C /* RACDelegateTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6256E82434767200B25F7C /* RACDelegateTwoViewController.m */; };
+		2B6256EB2434767200B25F7C /* RACDelegateTwoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B6256E92434767200B25F7C /* RACDelegateTwoViewController.xib */; };
+		2B6256EF2434768300B25F7C /* RACDelegateOneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6256ED2434768300B25F7C /* RACDelegateOneViewController.m */; };
+		2B6256F02434768300B25F7C /* RACDelegateOneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B6256EE2434768300B25F7C /* RACDelegateOneViewController.xib */; };
 		2BB5B3A8242DE76F002E8775 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5B3A7242DE76F002E8775 /* AppDelegate.m */; };
 		2BB5B3AB242DE76F002E8775 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5B3AA242DE76F002E8775 /* SceneDelegate.m */; };
 		2BB5B3AE242DE76F002E8775 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5B3AD242DE76F002E8775 /* ViewController.m */; };
@@ -39,6 +43,13 @@
 /* Begin PBXFileReference section */
 		0B4A1B65DD56D7C86F6427E7 /* libPods-ReactiveObjc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactiveObjc.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		278C543F8107A54D960A37BB /* Pods-ReactiveObjc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactiveObjc.debug.xcconfig"; path = "Target Support Files/Pods-ReactiveObjc/Pods-ReactiveObjc.debug.xcconfig"; sourceTree = "<group>"; };
+		2B6256E224346FD600B25F7C /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		2B6256E72434767200B25F7C /* RACDelegateTwoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RACDelegateTwoViewController.h; sourceTree = "<group>"; };
+		2B6256E82434767200B25F7C /* RACDelegateTwoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RACDelegateTwoViewController.m; sourceTree = "<group>"; };
+		2B6256E92434767200B25F7C /* RACDelegateTwoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RACDelegateTwoViewController.xib; sourceTree = "<group>"; };
+		2B6256EC2434768300B25F7C /* RACDelegateOneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RACDelegateOneViewController.h; sourceTree = "<group>"; };
+		2B6256ED2434768300B25F7C /* RACDelegateOneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RACDelegateOneViewController.m; sourceTree = "<group>"; };
+		2B6256EE2434768300B25F7C /* RACDelegateOneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RACDelegateOneViewController.xib; sourceTree = "<group>"; };
 		2BB5B3A3242DE76F002E8775 /* ReactiveObjc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReactiveObjc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BB5B3A6242DE76F002E8775 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2BB5B3A7242DE76F002E8775 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -86,6 +97,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B6256DB2431E36300B25F7C /* RAC_Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				2B6256EC2434768300B25F7C /* RACDelegateOneViewController.h */,
+				2B6256ED2434768300B25F7C /* RACDelegateOneViewController.m */,
+				2B6256EE2434768300B25F7C /* RACDelegateOneViewController.xib */,
+				2B6256E72434767200B25F7C /* RACDelegateTwoViewController.h */,
+				2B6256E82434767200B25F7C /* RACDelegateTwoViewController.m */,
+				2B6256E92434767200B25F7C /* RACDelegateTwoViewController.xib */,
+			);
+			path = RAC_Delegate;
+			sourceTree = "<group>";
+		};
 		2BB5B39A242DE76F002E8775 = {
 			isa = PBXGroup;
 			children = (
@@ -111,15 +135,17 @@
 		2BB5B3A5242DE76F002E8775 /* ReactiveObjc */ = {
 			isa = PBXGroup;
 			children = (
+				2B6256E224346FD600B25F7C /* PrefixHeader.pch */,
 				2BB5B3A6242DE76F002E8775 /* AppDelegate.h */,
 				2BB5B3A7242DE76F002E8775 /* AppDelegate.m */,
 				2BB5B3A9242DE76F002E8775 /* SceneDelegate.h */,
 				2BB5B3AA242DE76F002E8775 /* SceneDelegate.m */,
 				2BB5B3AC242DE76F002E8775 /* ViewController.h */,
 				2BB5B3AD242DE76F002E8775 /* ViewController.m */,
+				2B6256DB2431E36300B25F7C /* RAC_Delegate */,
 				2BB5B3AF242DE76F002E8775 /* Main.storyboard */,
-				2BB5B3B2242DE771002E8775 /* Assets.xcassets */,
 				2BB5B3B4242DE771002E8775 /* LaunchScreen.storyboard */,
+				2BB5B3B2242DE771002E8775 /* Assets.xcassets */,
 				2BB5B3B7242DE771002E8775 /* Info.plist */,
 				2BB5B3B8242DE771002E8775 /* main.m */,
 			);
@@ -158,7 +184,6 @@
 				278C543F8107A54D960A37BB /* Pods-ReactiveObjc.debug.xcconfig */,
 				5083DB8E552493C24BF12F8C /* Pods-ReactiveObjc.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -267,7 +292,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BB5B3B6242DE771002E8775 /* LaunchScreen.storyboard in Resources */,
+				2B6256F02434768300B25F7C /* RACDelegateOneViewController.xib in Resources */,
 				2BB5B3B3242DE771002E8775 /* Assets.xcassets in Resources */,
+				2B6256EB2434767200B25F7C /* RACDelegateTwoViewController.xib in Resources */,
 				2BB5B3B1242DE76F002E8775 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,7 +346,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BB5B3AE242DE76F002E8775 /* ViewController.m in Sources */,
+				2B6256EF2434768300B25F7C /* RACDelegateOneViewController.m in Sources */,
 				2BB5B3A8242DE76F002E8775 /* AppDelegate.m in Sources */,
+				2B6256EA2434767200B25F7C /* RACDelegateTwoViewController.m in Sources */,
 				2BB5B3B9242DE771002E8775 /* main.m in Sources */,
 				2BB5B3AB242DE76F002E8775 /* SceneDelegate.m in Sources */,
 			);
@@ -492,6 +521,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/ReactiveObjc/PrefixHeader.pch";
 				INFOPLIST_FILE = ReactiveObjc/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -509,6 +541,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/ReactiveObjc/PrefixHeader.pch";
 				INFOPLIST_FILE = ReactiveObjc/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
