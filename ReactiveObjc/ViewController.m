@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 
+#import "RACTestModel.h"
+
 @interface ViewController ()
 
 @end
@@ -44,9 +46,13 @@
     
     //实例
     
-    //运行机制（信号）
+    //一、运行机制（信号）
     [self reactiveCocoa_signal];
+    
+    //二、数据处理类
+    [self reactiveCocoa_dataProcessing];
 }
+
 
 #pragma marl - 运行机制(信号)
 - (void)reactiveCocoa_signal{
@@ -134,6 +140,76 @@
      那么对于RACSubject的实际应用，我们可以用来替换代理，应用实例请查看“RAC_Delegate”。
      */
     
+}
+
+
+#pragma marl - RACTuple & RACSequence 数据处理类
+/**
+ RACTupele 元组类
+ RACSequence RAC中的集合类，用于代替数组和字典，可以用来快速遍历
+ 
+ 元组
+    1、元组中元素e个数固定，不允许增删。
+    2、无需定义key，必要时也可以为数据命名。
+    3、可以同时存储多种类型的元素且元素类型固定。
+    4、适合同时遍历多元数据。
+ */
+
+- (void)reactiveCocoa_dataProcessing{
+    /**
+     快速遍历
+     1、把数组 转成 集合RACSequence (.rac_sequence)
+     2、把集合RACSequence转换成信号类 (rac_sequence.signal)
+     3、订阅信号、激活信号、会把集合中的元素全部遍历出来
+     */
+    
+    //遍历数组
+    NSArray *dataArr = @[@1, @3, @5, @7, @9];
+    [dataArr.rac_sequence.signal subscribeNext:^(id  _Nullable x) {
+        NSLog(@"遍历数组：  %@",x);
+    }];
+    
+    //遍历字典
+    NSDictionary *dataDic = @{@"name":@"xxx", @"age":@20};
+    [dataDic.rac_sequence.signal subscribeNext:^(id  _Nullable x) {
+        /**
+         遍历出来的 x 是元组RACTuple对象
+         解包元组，会把元组中的值按顺序给参数里面的变量赋值
+         */
+        RACTupleUnpack(NSString *key, NSString *value) = (RACTuple *)x;
+        /**
+         相当于
+         NSString *key = (RACTuple *)x(0);
+         NSString *key = (RACTuple *)x(1);
+         */
+        NSLog(@"遍历字典  key： %@    value： %@",key,value);
+    }];
+    
+    //RAC 字典转模型
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"RACTest.plist" ofType:nil];
+    NSArray *dicArr = [NSArray arrayWithContentsOfFile:path];
+    NSMutableArray *modelMuArr = [NSMutableArray array];
+    [dicArr.rac_sequence.signal subscribeNext:^(id  _Nullable x) {
+        RACTestModel *model = [RACTestModel modelWithDictionary:x];
+        [modelMuArr addObject:model];
+    } error:^(NSError * _Nullable error) {
+        NSLog(@"error: %@",error);
+    } completed:^{
+        NSLog(@"完成字典转模型 ： %@",modelMuArr);
+    }];
+    
+    //进阶写法
+    /**
+     map（映射）目的是把原始值value映射成一个新值
+     array 将集合转化成数组
+     底层实现：当信号被订阅，会遍历集合中的原始值，映射成新值，并保存到新的数组中
+     */
+    
+    NSArray *modelArr = [[dicArr.rac_sequence map:^id _Nullable(id  _Nullable value) {
+        return [RACTestModel modelWithDictionary:value];
+    }] array];
+    
+    NSLog(@"进阶  %@",modelArr);
 }
 
 

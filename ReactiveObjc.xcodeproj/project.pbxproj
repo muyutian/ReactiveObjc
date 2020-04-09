@@ -12,6 +12,8 @@
 		2B6256EB2434767200B25F7C /* RACDelegateTwoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B6256E92434767200B25F7C /* RACDelegateTwoViewController.xib */; };
 		2B6256EF2434768300B25F7C /* RACDelegateOneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6256ED2434768300B25F7C /* RACDelegateOneViewController.m */; };
 		2B6256F02434768300B25F7C /* RACDelegateOneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B6256EE2434768300B25F7C /* RACDelegateOneViewController.xib */; };
+		2B6256F7243F208100B25F7C /* RACTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6256F6243F208100B25F7C /* RACTestModel.m */; };
+		2B6256F9243F20EB00B25F7C /* RACTest.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B6256F8243F20EB00B25F7C /* RACTest.plist */; };
 		2BB5B3A8242DE76F002E8775 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5B3A7242DE76F002E8775 /* AppDelegate.m */; };
 		2BB5B3AB242DE76F002E8775 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5B3AA242DE76F002E8775 /* SceneDelegate.m */; };
 		2BB5B3AE242DE76F002E8775 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5B3AD242DE76F002E8775 /* ViewController.m */; };
@@ -50,6 +52,9 @@
 		2B6256EC2434768300B25F7C /* RACDelegateOneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RACDelegateOneViewController.h; sourceTree = "<group>"; };
 		2B6256ED2434768300B25F7C /* RACDelegateOneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RACDelegateOneViewController.m; sourceTree = "<group>"; };
 		2B6256EE2434768300B25F7C /* RACDelegateOneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RACDelegateOneViewController.xib; sourceTree = "<group>"; };
+		2B6256F5243F208100B25F7C /* RACTestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RACTestModel.h; sourceTree = "<group>"; };
+		2B6256F6243F208100B25F7C /* RACTestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RACTestModel.m; sourceTree = "<group>"; };
+		2B6256F8243F20EB00B25F7C /* RACTest.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RACTest.plist; sourceTree = "<group>"; };
 		2BB5B3A3242DE76F002E8775 /* ReactiveObjc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReactiveObjc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BB5B3A6242DE76F002E8775 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2BB5B3A7242DE76F002E8775 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -110,6 +115,16 @@
 			path = RAC_Delegate;
 			sourceTree = "<group>";
 		};
+		2B6256F4243F201800B25F7C /* RAC_TestModel */ = {
+			isa = PBXGroup;
+			children = (
+				2B6256F5243F208100B25F7C /* RACTestModel.h */,
+				2B6256F6243F208100B25F7C /* RACTestModel.m */,
+				2B6256F8243F20EB00B25F7C /* RACTest.plist */,
+			);
+			path = RAC_TestModel;
+			sourceTree = "<group>";
+		};
 		2BB5B39A242DE76F002E8775 = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +158,7 @@
 				2BB5B3AC242DE76F002E8775 /* ViewController.h */,
 				2BB5B3AD242DE76F002E8775 /* ViewController.m */,
 				2B6256DB2431E36300B25F7C /* RAC_Delegate */,
+				2B6256F4243F201800B25F7C /* RAC_TestModel */,
 				2BB5B3AF242DE76F002E8775 /* Main.storyboard */,
 				2BB5B3B4242DE771002E8775 /* LaunchScreen.storyboard */,
 				2BB5B3B2242DE771002E8775 /* Assets.xcassets */,
@@ -291,6 +307,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B6256F9243F20EB00B25F7C /* RACTest.plist in Resources */,
 				2BB5B3B6242DE771002E8775 /* LaunchScreen.storyboard in Resources */,
 				2B6256F02434768300B25F7C /* RACDelegateOneViewController.xib in Resources */,
 				2BB5B3B3242DE771002E8775 /* Assets.xcassets in Resources */,
@@ -347,6 +364,7 @@
 			files = (
 				2BB5B3AE242DE76F002E8775 /* ViewController.m in Sources */,
 				2B6256EF2434768300B25F7C /* RACDelegateOneViewController.m in Sources */,
+				2B6256F7243F208100B25F7C /* RACTestModel.m in Sources */,
 				2BB5B3A8242DE76F002E8775 /* AppDelegate.m in Sources */,
 				2B6256EA2434767200B25F7C /* RACDelegateTwoViewController.m in Sources */,
 				2BB5B3B9242DE771002E8775 /* main.m in Sources */,
