@@ -47,14 +47,17 @@
     //实例
     
     //一、运行机制（信号）
-    [self reactiveCocoa_signal];
+    //[self reactiveCocoa_signal];
     
     //二、数据处理类
-    [self reactiveCocoa_dataProcessing];
+    //[self reactiveCocoa_dataProcessing];
+    
+    //三、处理事件类
+    [self reactiveCocoa_command];
 }
 
 
-#pragma marl - 运行机制(信号)
+#pragma mark - 运行机制(信号)
 - (void)reactiveCocoa_signal{
     /**
      RAC是围绕信号（signal）来运行的，基本流程是：
@@ -143,7 +146,7 @@
 }
 
 
-#pragma marl - RACTuple & RACSequence 数据处理类
+#pragma mark - RACTuple & RACSequence 数据处理类
 /**
  RACTupele 元组类
  RACSequence RAC中的集合类，用于代替数组和字典，可以用来快速遍历
@@ -212,5 +215,70 @@
     NSLog(@"进阶  %@",modelArr);
 }
 
+
+#pragma mark - RACCommand 处理事件类
+/**
+ RACCommand
+ RAC中用于处理事件的类，可以把事件如何处理，事件中的数据如何传递包装在这个类中，可以很方便的监控事件的执行过程。
+ 使用场景适用于监听按钮点击、网络请求。
+ 
+ 使用步骤：
+ 1、创建命令 initWithSignalBlock
+ 2、在signalBlock中，创建信号RACSignal，并将其作为返回值
+ 3、执行命令 execute
+ 
+ 注意事项：
+ 1、signalBlock必须返回一个信号，不能返回nil。如果不想传递信号，可以创建返回空信号 [RACSignal empty]。
+ 2、RACCommand中的信号如果数据传递完，必须调用[subscriber sendCompleted]完成传递，此时命令才会执行完毕，否则一直执行中。
+ 3、RACCommand需要被强引用，否则接收不到RACCommand中的信号，因此RACCommand中的信号是延迟发送的。
+ */
+
+- (void)reactiveCocoa_command{
+    //创建命令
+    RACCommand *command = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+        NSLog(@"________  %@",input);
+        NSLog(@"执行命令");
+        //此处可以进行请求数据操作等，数据需要通过signalBlock返回的信号传递
+        
+        //没有数据传递可以返回空信号
+        //return [RACSignal empty];
+        
+        //创建信号，用来传递数据
+        return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+            [subscriber sendNext:@"请求数据"];
+            
+            //数据传递后需要调用此方法完成传递，此时命令才会执行完毕
+            [subscriber sendCompleted];
+            
+            return [RACDisposable disposableWithBlock:^{
+                
+            }];
+        }];
+    }];
+    
+    //RACCommand需要被强引用
+    _command = command;
+    
+    //获取数据
+    //订阅RACCommand信号  executionSignals是RACCommand中的信号源
+    [_command.executionSignals subscribeNext:^(id  _Nullable x) {
+        //此时接收到的是RACCommand的signalBlock返回的信号，通过订阅这个返回信号可以获取需要的数据
+        [x subscribeNext:^(id  _Nullable x) {
+            NSLog(@"获取数据： %@",x);
+        }];
+    }];
+    
+    //监听命令
+    [_command.executing subscribeNext:^(NSNumber * _Nullable x) {
+        if (x.boolValue) {
+            NSLog(@"正在执行");
+        }else{
+            NSLog(@"执行完毕");
+        }
+    }];
+    
+    //执行命令
+    [_command execute:@1];
+}
 
 @end
